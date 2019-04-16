@@ -1,49 +1,29 @@
 import React, { Component } from 'react'
-import {Login} from 'ant-design-pro'
+import { Login } from 'ant-design-pro'
 import { Alert, Checkbox } from 'antd'
 import style from './login.css'
 
 
 const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
 
-export default  class LoginDemo extends React.Component {
+export default class LoginDemo extends React.Component {
   state = {
     notice: '',
     type: 'tab2',
     autoLogin: true,
   };
-  onSubmit = (err, values) => {
-    console.log('value collected ->', {
-      ...values,
-      autoLogin: this.state.autoLogin,
-    });
-    if (this.state.type === 'tab1') {
-      this.setState(
-        {
-          notice: '',
-        },
-        () => {
-          if (
-            !err &&
-            (values.username !== 'admin' || values.password !== '888888')
-          ) {
-            setTimeout(() => {
-              this.setState({
-                notice:
-                  'The combination of username and password is incorrect!',
-              });
-            }, 500);
-          }
-        },
-      );
-    }
+  onSubmit = (err: any, values: any) => {
+    // console.log('value collected ->', {
+    //   ...values,
+    //   autoLogin: this.state.autoLogin,
+    // });
   };
-  onTabChange = (key) => {
+  onTabChange = (key: any) => {
     this.setState({
       type: key,
     });
   };
-  changeAutoLogin = (e) => {
+  changeAutoLogin = (e: any) => {
     this.setState({
       autoLogin: e.target.checked,
     });
@@ -52,30 +32,14 @@ export default  class LoginDemo extends React.Component {
     return (
       <div className={style.loginWarp}>
         <Login
-          defaultActiveKey={this.state.type}
           onTabChange={this.onTabChange}
           onSubmit={this.onSubmit}
         >
-          <Tab key="tab1" tab="Account">
-            {this.state.notice && (
-              <Alert
-                style={{ marginBottom: 24 }}
-                message={this.state.notice}
-                type="error"
-                showIcon
-                closable
-              />
-            )}
-            <UserName name="username" />
-            <Password name="password" />
-          </Tab>
-          <Tab key="tab2" tab="Mobile">
-            <Mobile name="mobile" />
-            <Captcha
-              onGetCaptcha={() => console.log('Get captcha!')}
-              name="captcha"
-            />
-          </Tab>
+          <Mobile name="mobile" />
+          <Captcha
+            // onGetCaptcha={() => console.log('Get captcha!')}
+            name="captcha"
+          />
           <div>
             <Checkbox
               checked={this.state.autoLogin}
@@ -88,15 +52,6 @@ export default  class LoginDemo extends React.Component {
             </a>
           </div>
           <Submit>Login</Submit>
-          <div>
-            Other login methods
-            <span className="icon icon-alipay" />
-            <span className="icon icon-taobao" />
-            <span className="icon icon-weibo" />
-            <a style={{ float: 'right' }} href="">
-              Register
-            </a>
-          </div>
         </Login>
       </div>
     );
