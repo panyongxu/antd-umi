@@ -1,14 +1,39 @@
-import React from 'react';
-import styles from './index.css';
+import React, { Component } from 'react'
+import { connect } from 'dva'
 
 
-export default function() {
-  return (
-    <div className={styles.normal}>
-      <div className={styles.welcome} />
-      <ul className={styles.list}>
-        My name is Pan
-      </ul>
-    </div>
-  );
+@connect(
+  (state: any) => ({
+    count: state.count.count,
+    name: state.count.list.name,
+  }),
+  {
+    add: () => ({ type: 'count/add' }),
+    minus: () => ({ type: 'count/minus' }),
+    anyceAdd: () => ({ type: 'count/anyceAdd' }),
+  }
+)
+export default class Index extends Component<any> {
+  constructor(props: any) {
+    super(props)
+  }
+  componentDidMount() {
+    this.props.anyceAdd()
+  }
+  render() {
+    const { add, minus, count, name } = this.props;
+
+    return (
+      <div>
+        <h1>count: {count}</h1>
+        <h2>List: {!name ? '加载中' : name}</h2>
+        <hr />
+        <button onClick={add}>+</button>
+        <button onClick={minus}>-</button>
+        {/* <button onClick={() => anyceAdd()}>延迟加载</button> */}
+      </div>
+
+    )
+  }
 }
+
