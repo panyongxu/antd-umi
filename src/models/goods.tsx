@@ -8,7 +8,7 @@ function getGoods() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(course)
-    }, 2000);
+    }, 2000); 
 
   })
 }

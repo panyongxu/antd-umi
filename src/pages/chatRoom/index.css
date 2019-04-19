@@ -1,0 +1,19 @@
+.flex {
+  display: flex;
+  width: 100%;
+  height: 500px;
+}
+
+.flex .left {
+  width: 20%;
+  height: 500px;
+  border: 1px solid #eee;
+  margin-right: 50px;
+  padding: 10px;
+}
+.flex .right {
+  width: 80%;
+  height: 500px;
+  padding: 10px;
+  border: 1px solid #eee;
+}

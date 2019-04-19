@@ -10,6 +10,8 @@ module.exports = {
 			routes: [
 				{ path: '/', component: './index' },
 				{ path: '/index', component: './index' },
+				{ path: '/hooks', component: './hooks' },
+				{ path: '/chatroom', component: './chatRoom' },
 				{ path: '/login/detail', component: './login/detail'},
 				{
 					path: '/about',
